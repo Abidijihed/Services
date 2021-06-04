@@ -5,8 +5,8 @@ import SingUpStack from './singUpStack';
 import ProfileStack from './profileStack';
 import FoundUs from './FoundUsStack';
 import ContactStack from './ContactStack'
-
-
+import ChoiceStack from './ChoiceStack'
+import AboutStack from './AboutStack'
 
 const screens = {
     SingUp:{
@@ -24,6 +24,12 @@ const screens = {
     },
     Contact : {
         screen: ContactStack
+    },
+    Choice : {
+        screen: ChoiceStack
+    },
+    about : {
+        screen: AboutStack
     }
 }
 const RootDrawerNavigator = createDrawerNavigator(screens)

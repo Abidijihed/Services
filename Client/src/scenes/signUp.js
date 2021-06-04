@@ -9,17 +9,15 @@ import {
   ImageBackground,
   Dimensions
 } from "react-native";
-
-
-import FormInput from "../components/FormInput";
+import {Avatar  } from 'react-native-elements';
 import FormButton from "../components/FormButton";
 import SocialButton from "../components/SocialButton";
 import axios from "react-native-axios";
 import sanitizeHtml from "sanitize-html";
-import { ScrollView } from "react-native-gesture-handler";
 import * as Google from "expo-google-app-auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
 const signUp = ({ navigation }) => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -189,64 +187,77 @@ const ClientIos =
 				source={require("../../assets/Home_Page/back.jpg")}
 			  >
         <Text style={styles.text}>Create an account</Text>
-        <TextInput
-        style={styles.input} 
+        <Input 
           labelValue={firstName}
           onChangeText={(firstName) => setFirstName(firstName)}
-          placeholder="firstName"
-          iconType="user"
-          keyboardType="firstName"
-          autoCapitalize="none"
-          autoCorrect={false}
+          placeholder="FirstName"
+          leftIcon={
+            <Icon
+              name='user'
+              size={24}
+              color='black'
+            />
+          }
           onBlur={() => nameValidator()}
         />
         <Text style={{ color: "red" }}>{nameError}</Text>
 
-        <TextInput
-        style={styles.input} 
+        <Input 
           labelValue={lastName}
           onChangeText={(lastName) => setLastName(lastName)}
-          placeholder="lastName"
-          iconType="user"
-          keyboardType="lastName"
-          autoCapitalize="none"
-          autoCapitalize="none"
+          placeholder="LastName"
+          leftIcon={
+            <Icon
+              name='user'
+              size={24}
+              color='black'
+            />
+          }
           autoCorrect={false}
           onBlur={() => lastValidator()}
         />
         <Text style={{ color: "red" }}>{lastError}</Text>
 
-        <TextInput
-        style={styles.input} 
+        <Input 
           labelValue={email}
           onChangeText={(userEmail) => setEmail(userEmail)}
           onBlur={() => emailvalidator()}
-          placeholder="Email"
-          iconType="user"
-          keyboardType="email-address"
-          autoCapitalize="none"
+          placeholder="email@address.com"
+          leftIcon={
+            <Icon
+              name='envelope'
+              size={24}
+            />
+          }
           autoCorrect={false}
         />
         <Text style={{ color: "red" }}>{mailError}</Text>
-        <TextInput
-        style={styles.input} 
+        <Input 
           labelValue={password}
           onChangeText={(userPassword) => setPassword(userPassword)}
           placeholder="password"
-          iconType="lock"
+          leftIcon={
+            <Icon
+              name='lock'
+              size={24}
+              color='black'
+            />
+          }
           secureTextEntry={true}
           onBlur={() => passwordValid()}
         />
         <Text style={{ color: "red" }}>{passwordError}</Text>
 
-        <TextInput
-        style={styles.input} 
+        <Input 
           labelValue={numberPhone}
           onChangeText={(userNumberPhone) => setNumberPhone(userNumberPhone)}
           placeholder="phone number"
-          icon="phone"
-          keyboardType="numeric"
-          autoCapitalize="none"
+          leftIcon={
+            <Icon
+              name='phone'
+              size={24}
+            />
+          }
           autoCorrect={false}
           onBlur={() => {
             phoneValidator();
@@ -255,13 +266,7 @@ const ClientIos =
         <Text style={{ color: "red" }}>{phoneError}</Text>
         <FormButton buttonTitle="Sign Up" onPress={() => register()} />
         <View>
-          {/* <SocialButton
-            buttonTitle="Sign Un with Facebook"
-            btnType="facebook"
-            color="#4867aa"
-            backgroundColor="#e6eaf4"
-          /> */}
-
+        
           <SocialButton
             buttonTitle="Sign Up with Google"
             btnType="google"
@@ -269,6 +274,7 @@ const ClientIos =
             backgroundColor="#f5e7ea"
             onPress={() => signInAsync()}
           />
+          
         </View>
         {/* ) : null} */}
 
@@ -310,12 +316,7 @@ const styles = StyleSheet.create({
     color: "#2e64e5",
     fontFamily: "Lato-Regular",
   },
-  input: {
-    height: 40,
-    margin: 12,
-    marginTop: 5,
-    borderBottomWidth: 2
-},
+
   textPrivate: {
     flexDirection: "row",
     flexWrap: "wrap",

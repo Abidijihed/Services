@@ -5,7 +5,8 @@ import axios from "react-native-axios";
 import { StatusBar } from "expo-status-bar"
 import * as Google from "expo-google-app-auth";
 import { StyleSheet, Text, View,TextInput ,Dimensions,ImageBackground, Button} from "react-native";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
 
 
 const { width, height } = Dimensions.get("window")
@@ -62,7 +63,7 @@ const ClientIos =
       .post(`http://localhost:3333/api/login`, { email, password })
       .then((res) => {
         if(res.data[1]==='secsuss'){
-
+          localStorage.setItem('id',res.data[2])
           navigation.navigate('profile')
         }
 
@@ -86,16 +87,29 @@ const ClientIos =
                   <View style={styles.container1}>
         <Text style={styles.text1}>Let's connecte</Text>
         <Text style={styles.text2}>l'espace qui nous rapproche</Text>     
-      <TextInput style={styles.input}  placeholder="E-mail" labelValue={email}
+      <Input 
+       labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
-        
+        placeholder="email@address.com"
+        leftIcon={
+          <Icon
+            name='envelope'
+            size={24}
+          />
+        }
+        autoCorrect={false}
         />
-     <TextInput style={styles.input} 
+     <Input  
      labelValue={password}
      onChangeText={(userPassword) => setPassword(userPassword)} 
-     
      placeholder="password"
-     iconType="lock"
+     leftIcon={
+       <Icon
+         name='lock'
+         size={24}
+         color='black'
+       />
+     }
      secureTextEntry={true}
      />
     
@@ -145,12 +159,7 @@ const styles = StyleSheet.create({
     color: "#000",
     fontFamily: "Lato-Regular",
   },
-  input: {
-    height: 40,
-    margin: 12,
-    marginTop: 5,
-    borderBottomWidth: 2
-},
+
 text1:{
 
 fontSize:40,

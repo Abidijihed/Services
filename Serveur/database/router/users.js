@@ -10,6 +10,6 @@ router.get('/api/logout',models.logout);
 
 
 router.patch('/api/getall/:id',controler.Updateuser)
-router.get('/api/admin/:id',models.getoneusers)
+router.get('/api/user/:id',models.getoneusers)
 router.get('/api/session',middleware.VerifySession)
 module.exports={userRouter:router}
