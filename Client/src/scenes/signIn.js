@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import FormButton from "../components/FormButton";
 import FromInput from "../components/FormInput";
 import axios from "react-native-axios";
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar"
 import * as Google from "expo-google-app-auth";
-
-
-import { StyleSheet, Text, View, Platform, Image,TextInput ,Dimensions,ImageBackground, Button,TouchableOpacity} from "react-native";
+import { StyleSheet, Text, View,TextInput ,Dimensions,ImageBackground, Button} from "react-native";
 
 
 
@@ -63,11 +61,12 @@ const ClientIos =
     axios
       .post(`http://localhost:3333/api/login`, { email, password })
       .then((res) => {
-        console.log("***********************", res);
+        if(res.data[1]==='secsuss'){
 
-        if (res.data === "password matched") {
+          navigation.navigate('profile')
         }
 
+       
         if (res.data === "Invalid email") {
           alert("wrong passwrod or email ");
         } else if (res.data === "wrong password") {
